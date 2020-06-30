@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block top %} class="menu-active" {% endblock top %}
+
+{% block content %}
+
+<section id="schedule" class="section-with-bg">
+    <div class="container wow fadeInUp">
+        <div class="section-header">
+            <br />
+            <h2>Top Players</h2>
+            <p>The list of top 100 players</p>
+        </div>
+
+        <div class="tab-content row justify-content-center">
+
+            <!-- Schdule Day 1 -->
+            <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
+
+                <div class="row schedule-item">
+                    <div class="col-md-2">
+                        <h3>#1</h3>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="speaker">
+                            <img src="img/speakers/1.jpg" alt="Brenden Legros">
+                        </div>
+                        <h4>Mr.XHunter</h4>
+                        <p>Total Match: 20, Total Kills: 95</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Schdule Day 1 -->
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock content %}

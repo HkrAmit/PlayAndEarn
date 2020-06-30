@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<section id="intro">
+    <div class="intro-container wow fadeIn">
+        <h1 class="mb-4 pb-0">Watch The Match<br><span>Live</span></h1>
+        {% if match == "no_match" %}
+            <p class="mb-4 pb-0">No match is currently running</p>
+        {% else %}
+            <p class="mb-4 pb-0">Match {{ match.id }}, {{ match.location }}/{{ match.match_type }}/{{ match.match_mode }}</p>
+        {% endif %}
+        
+        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+        <a href="#about" class="about-btn scrollto">About The Event</a>
+    </div>
+</section>
+
+{% endblock %}

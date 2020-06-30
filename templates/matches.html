@@ -1,0 +1,255 @@
+{% extends 'base/base.html' %}
+
+{% block matches %} class="menu-active" {% endblock matches %}
+
+{% block content %}
+
+<section id="buy-tickets" class="section-with-bg wow fadeInUp">
+    <div class="container">
+
+        <div class="section-header">
+            <br />
+            <h2>All Matches</h2>
+            <p>Velit consequatur consequatur inventore iste fugit unde omnis eum aut.</p>
+        </div>
+
+        <div class="row">
+            {% for match in matches %}
+                {% if match.id in set_one %}
+                    <div class="col-lg-4">
+                        <div class="card mb-5 mb-lg-0">
+                            <div class="card-body">
+                                <h5 class="card-title text-muted text-uppercase text-center">{{ match.match_status }}</h5>
+                                <h6 class="card-price text-center">Match {{ match.id }}</h6>
+                                <hr>
+                                <ul class="fa-ul">
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Map: {{ match.location }}</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Type: {{ match.match_type }}</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Mode: {{ match.match_mode }}</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Time: {{ match.match_time }}</li>
+                                </ul>
+                                <hr>
+                                <div class="text-center">
+                                    {% if match.match_status == "upcoming" %}
+                                        <button class="btn" disabled>Open Soon</button>
+                                    {% endif %}
+                                    {% if match.match_status == "open" %}
+                                        <a href="{% url 'reg-for-match' match.id %}" class="btn">Register</a>
+                                    {% endif %}
+                                    {% if match.match_status == "full" %}
+                                        <button class="btn" disabled>Room is full</button>
+                                    {% endif %}
+                                    {% if match.match_status == "running" %}
+                                        <a href="{% url 'live' %}" class="btn">Watch Live</a>
+                                    {% endif %}
+                                    {% if match.match_status == "over" %}
+                                        <a href="{% url 'reg-for-match' match.id %}" class="btn">See Results</a>
+                                    {% endif %}
+                                    {% comment %} <button type="button" class="btn">Buy Now</button> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <br />
+        
+        <div class="row">
+            {% for match in matches %}
+                {% if match.id in set_two %}
+                    <div class="col-lg-4">
+                        <div class="card mb-5 mb-lg-0">
+                            <div class="card-body">
+                                <h5 class="card-title text-muted text-uppercase text-center">{{ match.match_status }}</h5>
+                                <h6 class="card-price text-center">Match {{ match.id }}</h6>
+                                <hr>
+                                <ul class="fa-ul">
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Map: {{ match.location }}</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Type: {{ match.match_type }}</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Mode: {{ match.match_mode }}</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Time: {{ match.match_time }}</li>
+                                </ul>
+                                <hr>
+                                <div class="text-center">
+                                    {% if match.match_status == "upcoming" %}
+                                        <button class="btn" disabled>Open Soon</button>
+                                    {% endif %}
+                                    {% if match.match_status == "open" %}
+                                        <a href="{% url 'reg-for-match' match.id %}" class="btn">Register</a>
+                                    {% endif %}
+                                    {% if match.match_status == "running" %}
+                                        <a href="{% url 'live' %}" class="btn">Watch Live</a>
+                                    {% endif %}
+                                    {% if match.match_status == "over" %}
+                                        <a href="{% url 'reg-for-match' match.id %}" class="btn">See Results</a>
+                                    {% endif %}
+                                    {% comment %} <button type="button" class="btn">Buy Now</button> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock content %}
+
+
+
+{% comment %} <section id="buy-tickets" class="section-with-bg wow fadeInUp">
+    <div class="container">
+
+        <div class="section-header">
+            <br />
+            <h2>All Matches</h2>
+            <p>Velit consequatur consequatur inventore iste fugit unde omnis eum aut.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-5 mb-lg-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Standard Access</h5>
+                        <h6 class="card-price text-center">$150</h6>
+                        <hr>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Community Access</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Workshop Access</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>After Party</li>
+                        </ul>
+                        <hr>
+                        <div class="text-center">
+                            <a href="{% url 'reg-for-match' 1 %}" class="btn">Buy Now</a>
+                            {% comment %} <button type="button" class="btn">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card mb-5 mb-lg-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Pro Access</h5>
+                        <h6 class="card-price text-center">$250</h6>
+                        <hr>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Workshop Access</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>After Party</li>
+                        </ul>
+                        <hr>
+                        <div class="text-center">
+                            <a href="{% url 'reg-for-match' 2 %}" class="btn">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pro Tier -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Premium Access</h5>
+                        <h6 class="card-price text-center">$350</h6>
+                        <hr>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Workshop Access</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>After Party</li>
+                        </ul>
+                        <hr>
+                        <div class="text-center">
+                            <a href="{% url 'reg-for-match' 3 %}" class="btn">Buy Now</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-5 mb-lg-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Standard Access</h5>
+                        <h6 class="card-price text-center">$150</h6>
+                        <hr>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Community Access</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Workshop Access</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>After Party</li>
+                        </ul>
+                        <hr>
+                        <div class="text-center">
+                            <a href="{% url 'reg-for-match' 4 %}" class="btn">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card mb-5 mb-lg-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Pro Access</h5>
+                        <h6 class="card-price text-center">$250</h6>
+                        <hr>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Workshop Access</li>
+                            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>After Party</li>
+                        </ul>
+                        <hr>
+                        <div class="text-center">
+                            <a href="{% url 'reg-for-match' 5 %}" class="btn">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pro Tier -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Premium Access</h5>
+                        <h6 class="card-price text-center">$350</h6>
+                        <hr>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>Workshop Access</li>
+                            <li><span class="fa-li"><i class="fa fa-check"></i></span>After Party</li>
+                        </ul>
+                        <hr>
+                        <div class="text-center">
+                            <a href="{% url 'reg-for-match' 6 %}" class="btn">Buy Now</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section> {% endcomment %}
